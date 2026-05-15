@@ -6,21 +6,21 @@
 
 <p align="center">
   <strong>The open-source waitlist you actually own.</strong><br />
-  Verified signups, referral links, dynamic ranking, abuse protection — no third-party lock-in.
+  Verified signups, referral links, dynamic ranking, and abuse protection. No lock-in.
 </p>
 
 <p align="center">
   <a href="https://open-waitlist-seven.vercel.app">Live Demo</a>
   ·
-  <a href="#vibe-coding-setup">Vibe Coding Setup</a>
+  <a href="#vibe-coding-setup">Vibe coding setup</a>
   ·
-  <a href="#quick-start">Quick Start</a>
+  <a href="#quick-start">Quick start</a>
   ·
   <a href="#setup">Setup</a>
   ·
-  <a href="#bring-your-own-frontend">Bring Your Own Frontend</a>
+  <a href="#bring-your-own-frontend">Bring your own frontend</a>
   ·
-  <a href="./docs/API.md">API Docs</a>
+  <a href="./docs/API.md">API docs</a>
   ·
   <a href="./docs/FAQ.md">FAQ</a>
   ·
@@ -38,27 +38,27 @@
   <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fzaidazmi%2Fopen-waitlist&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,SUPABASE_SECRET_KEY,RESEND_API_KEY,WAITLIST_FROM_EMAIL,NEXT_PUBLIC_SITE_URL&envDescription=Supabase%20and%20Resend%20credentials%20needed%20to%20run%20Open%20Waitlist&envLink=https%3A%2F%2Fgithub.com%2Fzaidazmi%2Fopen-waitlist%2Fblob%2Fmain%2F.env.example&project-name=open-waitlist&repository-name=open-waitlist"><img src="https://vercel.com/button" alt="Deploy with Vercel" /></a>
 </p>
 
-<!-- TODO: Add a screenshot or demo GIF here for maximum impact -->
+<!-- TODO: Add a screenshot or demo GIF here -->
 <!-- <p align="center"><img src="./docs/demo.gif" alt="Open Waitlist demo" width="720" /></p> -->
 
 ---
 
 ## Why Open Waitlist?
 
-Most waitlist tools make you rent the most valuable thing you are building: **your launch list**.
+Most waitlist tools keep your launch list on their servers. You pay monthly, you can't export cleanly, and if they shut down you lose everything.
 
-Open Waitlist gives you the full flow in your own codebase — deploy it, own the data, move on.
+Open Waitlist is a Next.js app you deploy yourself. Your data stays in your own Supabase project.
 
 | Feature | What it does |
 | --- | --- |
-| **Verified signups** | Double opt-in emails before users count toward ranking. |
-| **Referral links** | Every verified user gets a shareable link. Referrals bump their rank. |
-| **Dynamic ranking** | Rank computed live by referral count, then signup time. No stale positions. |
-| **Abuse protection** | DB-backed rate limiting, email resend limits, honeypot field, timing checks. |
-| **Own your data** | Everything stored in your Supabase project. Export anytime. |
-| **Bring your own frontend** | Use the included UI or call the API from your existing site. |
+| Verified signups | Double opt-in emails before a user counts toward ranking. |
+| Referral links | Every verified user gets a shareable link. Referrals move them up. |
+| Dynamic ranking | Rank is computed live from referral count, then signup time. |
+| Abuse protection | DB-backed rate limiting, email resend limits, honeypot field, timing checks. |
+| Own your data | Everything is stored in your Supabase project. Export anytime. |
+| Bring your own frontend | Use the included UI or call the API from your existing site. |
 
-## How It Works
+## How it works
 
 ```
 1. User signs up        POST /api/waitlist
@@ -74,11 +74,11 @@ Open Waitlist gives you the full flow in your own codebase — deploy it, own th
 6. User shares link     Referral code in URL → more signups → rank improves
 ```
 
-## Vibe Coding Setup
+## Vibe coding setup
 
-Using an AI coding agent (Claude Code, Cursor, Copilot, Windsurf, etc.)? Point it at this repo and paste one of these prompts.
+If you use an AI coding agent (Claude Code, Cursor, Copilot, Windsurf, etc.), point it at this repo and paste one of these prompts.
 
-**Add a waitlist to my existing project:**
+Add a waitlist to an existing project:
 
 ```
 I want to add a waitlist to my project. Use https://github.com/zaidazmi/open-waitlist as reference.
@@ -95,19 +95,19 @@ Set up:
 5. Configure .env.local with my Supabase and Resend credentials using .env.example as template
 ```
 
-**Deploy the full waitlist app as-is:**
+Deploy the full app as-is:
 
 ```
 Clone https://github.com/zaidazmi/open-waitlist and help me deploy it.
 
 Read the README for the quick start and docs/DEPLOYMENT.md for production setup.
 Read .env.example for all the environment variables I need to configure.
-Read docs/SUPABASE.md for database setup — I need to run supabase/schema.sql.
+Read docs/SUPABASE.md for database setup. I need to run supabase/schema.sql.
 
 Set up Supabase, configure Resend email, set environment variables, and deploy to Vercel.
 ```
 
-**Use just the backend API with my own frontend:**
+Use just the backend API with your own frontend:
 
 ```
 I want to use https://github.com/zaidazmi/open-waitlist as a headless backend for my existing site.
@@ -119,7 +119,7 @@ Set up the backend with WAITLIST_ALLOWED_ORIGINS for my domain, then give me the
 I need for: signup, email verification redirect handling, and position/rank lookup.
 ```
 
-**Customize the landing page design:**
+Customize the landing page:
 
 ```
 I want to customize the Open Waitlist landing page.
@@ -133,7 +133,7 @@ Read src/app/globals.css for the theme variables and colors.
 Help me change [describe what you want: colors, copy, layout, animations, etc.]
 ```
 
-## Quick Start
+## Quick start
 
 ```bash
 cd open-waitlist
@@ -144,14 +144,14 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-The UI runs immediately. Real signups need Supabase and Resend credentials (see [Setup](#setup)).
+The UI runs without any credentials. Signups won't work until you add Supabase and Resend keys (see [Setup](#setup)).
 
-## Choose A Mode
+## Choose a mode
 
 | Mode | Use this when |
 | --- | --- |
-| **Full app** | You want the included landing page, API routes, verification flow, and verified/share page. |
-| **Backend only** | You already have a marketing site and only want Open Waitlist to handle signup, email verification, referrals, and ranking. |
+| Full app | You want the included landing page, API routes, verification flow, and share page. |
+| Backend only | You already have a site and only need the signup, verification, referral, and ranking API. |
 
 ## Setup
 
@@ -195,9 +195,9 @@ NEXT_PUBLIC_SITE_URL="https://your-site.com"
 
 See every option in [.env.example](./.env.example).
 
-## Bring Your Own Frontend
+## Bring your own frontend
 
-Deploy Open Waitlist as the backend and call it from your existing site.
+You can deploy Open Waitlist as a backend and call it from your existing site.
 
 ```bash
 NEXT_PUBLIC_SITE_URL="https://acme.com"
@@ -251,12 +251,12 @@ Example: [examples/custom-frontend](./examples/custom-frontend)
 
 Full reference: [docs/API.md](./docs/API.md)
 
-## Viewing Signups
+## Viewing signups
 
-Open Waitlist stores every signup in your Supabase `waitlist` table.
+Signups live in your Supabase `waitlist` table.
 
 1. Open your Supabase project.
-2. Go to **Table Editor** and open the `waitlist` table.
+2. Go to Table Editor and open the `waitlist` table.
 3. Filter `verified = true` for confirmed users.
 
 | Column | Meaning |
@@ -270,7 +270,7 @@ Open Waitlist stores every signup in your Supabase `waitlist` table.
 
 Export queries: [docs/SUPABASE.md#8-viewing-and-exporting-signups](./docs/SUPABASE.md#8-viewing-and-exporting-signups)
 
-## Project Structure
+## Project structure
 
 ```text
 src/app/api/waitlist/        API routes (signup, verify, position)
@@ -282,7 +282,7 @@ docs/                        Architecture, API reference, setup guides
 examples/custom-frontend/    Minimal standalone frontend example
 ```
 
-## Production Checklist
+## Production checklist
 
 - [ ] Run `npm run lint` and `npm run build`
 - [ ] Run `npm audit --omit=dev`
@@ -314,6 +314,6 @@ MIT
 ---
 
 <p align="center">
-  If Open Waitlist saved you from paying for a SaaS waitlist, consider giving it a star.<br />
+  Found this useful? A star helps others find it.<br />
   <a href="https://github.com/zaidazmi/open-waitlist">Star on GitHub</a>
 </p>
