@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Custom Frontend Example | Open Waitlist</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #050607;
+        color: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(33, 229, 173, 0.18), transparent 34%),
+          radial-gradient(circle at 80% 90%, rgba(245, 194, 107, 0.14), transparent 30%),
+          #050607;
+      }
+
+      main {
+        width: min(100%, 460px);
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(34px, 7vw, 58px);
+        line-height: 0.94;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0 0 24px;
+        color: #a1a1aa;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      form {
+        display: flex;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      input,
+      button {
+        min-height: 48px;
+        border: 0;
+        border-radius: 6px;
+        font: inherit;
+      }
+
+      input {
+        width: 100%;
+        padding: 0 14px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.35);
+        outline: 1px solid transparent;
+      }
+
+      input:focus {
+        outline-color: rgba(33, 229, 173, 0.85);
+      }
+
+      button {
+        flex: 0 0 auto;
+        padding: 0 18px;
+        color: #04120f;
+        font-weight: 750;
+        cursor: pointer;
+        background: #21e5ad;
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      #message {
+        min-height: 24px;
+        margin-top: 14px;
+        color: #cbd5e1;
+        font-size: 15px;
+      }
+
+      @media (max-width: 520px) {
+        form {
+          flex-direction: column;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Join the waitlist.</h1>
+      <p>
+        This page is intentionally separate from the Open Waitlist app. It only calls the
+        hosted backend API.
+      </p>
+
+      <form id="waitlist-form">
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+        <button id="submit" type="submit">Join</button>
+      </form>
+
+      <div id="message" role="status" aria-live="polite"></div>
+    </main>
+
+    <script>
+      const WAITLIST_API_URL = "http://localhost:3000";
+
+      const formRenderedAt = Date.now();
+      const form = document.querySelector("#waitlist-form");
+      const email = document.querySelector("#email");
+      const submit = document.querySelector("#submit");
+      const message = document.querySelector("#message");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const referredBy = new URLSearchParams(window.location.search).get("ref");
+        submit.disabled = true;
+        message.textContent = "Joining...";
+
+        try {
+          const response = await fetch(`${WAITLIST_API_URL}/api/waitlist`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: email.value,
+              referredBy,
+              website: "",
+              submittedAt: formRenderedAt,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Could not join the waitlist.");
+          }
+
+          form.reset();
+          message.textContent = data.message || "Check your email to verify your spot.";
+        } catch (error) {
+          message.textContent = error instanceof Error ? error.message : "Something went wrong.";
+        } finally {
+          submit.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

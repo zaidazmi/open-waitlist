@@ -1,0 +1,274 @@
+.heroSection {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(28px, 5vh, 56px) 0 clamp(22px, 4vh, 36px);
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(16px, 3vh, 28px);
+  height: 100%;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--text-secondary);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(37, 242, 184, 0.38);
+  border-radius: 10px;
+  color: var(--accent);
+  background: rgba(37, 242, 184, 0.08);
+  box-shadow: var(--shadow-glow);
+}
+
+.repoTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 0.85rem;
+}
+
+.heroContent {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  gap: clamp(14px, 2.2vh, 20px);
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  transform: translateY(-1.5vh);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 8px 14px;
+  border: 1px solid rgba(37, 242, 184, 0.22);
+  border-radius: var(--radius-full);
+  background: rgba(37, 242, 184, 0.07);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.86rem;
+}
+
+.kickerDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 16px rgba(37, 242, 184, 0.8);
+}
+
+.title {
+  max-width: 900px;
+  font-size: clamp(3.25rem, 8vw, 6.75rem);
+  line-height: 0.96;
+  color: #fff;
+}
+
+.title span {
+  color: transparent;
+  background: linear-gradient(115deg, var(--accent) 0%, #f7f1d0 45%, var(--accent-warm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.subtitle {
+  max-width: 680px;
+  color: var(--text-secondary);
+  font-size: clamp(1.02rem, 1.7vw, 1.26rem);
+  line-height: 1.55;
+}
+
+.ctaGroup {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.emailForm {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: min(100%, 590px);
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.emailForm:focus-within {
+  border-color: rgba(37, 242, 184, 0.55);
+  box-shadow: var(--shadow-glow), 0 24px 90px rgba(0, 0, 0, 0.35);
+}
+
+.emailFormError {
+  border-color: rgba(239, 68, 68, 0.65);
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.12);
+}
+
+.emailInput {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0.9rem 1.25rem;
+  font-size: 1rem;
+}
+
+.emailInput::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.honeypotInput {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.emailInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.ctaPrimary {
+  flex-shrink: 0;
+}
+
+.emailError,
+.emailSuccess {
+  min-height: 1.3rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.emailError {
+  color: rgba(252, 165, 165, 0.95);
+}
+
+.emailSuccess {
+  color: rgba(134, 239, 172, 0.95);
+}
+
+.featureRail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(100%, 760px);
+  margin: clamp(4px, 1.2vh, 12px) auto 0;
+}
+
+.featureItem {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  text-align: left;
+}
+
+.featureItem strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.featureItem span {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .heroSection {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    padding: 28px 0 34px;
+  }
+
+  .heroContainer {
+    height: auto;
+  }
+
+  .topBar {
+    justify-content: center;
+  }
+
+  .heroContent {
+    transform: none;
+  }
+
+  .repoTag {
+    display: none;
+  }
+
+  .title {
+    font-size: clamp(3rem, 17vw, 4.5rem);
+  }
+
+  .emailForm {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    width: min(100%, 360px);
+  }
+
+  .emailInput {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ctaPrimary {
+    width: 100%;
+  }
+
+  .featureRail {
+    grid-template-columns: 1fr;
+    width: min(100%, 360px);
+  }
+}
