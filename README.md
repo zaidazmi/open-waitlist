@@ -43,11 +43,9 @@
 
 ---
 
-## Why Open Waitlist?
+## Why I built this
 
-Most waitlist tools keep your launch list on their servers. You pay monthly, you can't export cleanly, and if they shut down you lose everything.
-
-Open Waitlist is a Next.js app you deploy yourself. Your data stays in your own Supabase project.
+I vibe code a lot of side projects and I kept needing a waitlist before the thing was even half done. Paying $29/mo for a signup form felt dumb when I could just build one myself. Runs on your own Supabase and Vercel, takes a few minutes to set up, and you keep your data.
 
 | Feature | What it does |
 | --- | --- |
